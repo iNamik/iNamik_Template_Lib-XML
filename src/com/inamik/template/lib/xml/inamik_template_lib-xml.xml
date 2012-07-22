@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template-lib>
+	<description>
+	<![CDATA[
+		<p>
+			XML tag library for the iNamik Template Engine.
+		</p>
+		<p>
+			This library provides basic XML/XPath functionaility.
+		</p>
+	]]>
+	</description>
+
+	<!--
+	**************************************************************************
+	* Action: document
+	**************************************************************************
+	 -->
+	<action
+		name        = "document"
+		class       = "com.inamik.template.lib.xml.actions.Document"
+		parmType    = "attributes"
+		blockType   = "empty"
+		bodyContent = "empty"
+	>
+		<description>
+		<![CDATA[
+			Loads an XML file into a template variable.
+		]]>
+		</description>
+		<attribute name="id" required="true">
+			The name of the template variable to assign the result to.
+		</attribute>
+		<attribute name="file" required="false">
+			Optionally used to load an XMl document from the filesystem.
+			If a relative path is provided, it is considered to be relative
+			to the Template Root directory.
+		</attribute>
+		<attribute name="resource" required="false">
+			Optionally used to load an XMl document from the classpath.
+		</attribute>
+		<example title="Filesystem Example">
+		<![CDATA[
+			{xml:document file="config.xml" id=config}
+		]]>
+		</example>
+		<example title="Classpath Example">
+		<![CDATA[
+			{xml:document resource="com/inamik/template/lib/xml/inamik_template_lib-xml.xml" id=templateLib}
+		]]>
+		</example>
+	</action>
+
+	<!--
+	**************************************************************************
+	* Action: xpath
+	**************************************************************************
+	 -->
+	<action
+		name        = "xpath"
+		class       = "com.inamik.template.lib.xml.actions.XPath"
+		parmType    = "attributes"
+		blockType   = "empty"
+		bodyContent = "text"
+	>
+		<description>
+		<![CDATA[
+			Evaluates and XPath expression against an object.
+		]]>
+		</description>
+		<attribute name="id" required="false">
+			Optionally store the result in the specified variable.
+			If not specified, the result is printed.
+		</attribute>
+		<attribute name="from" required="true">
+			The Object to run the XPath expression against.
+		</attribute>
+		<attribute name="xpath" required="true">
+			The XPath expression.
+		</attribute>
+		<attribute name="type" required="false">
+		<![CDATA[
+			<p>
+				The desired result type of the XPath expression.
+			</p>
+			<ul>
+				<li> boolean
+				<li> node
+				<li> nodes
+				<li> number
+				<li> object
+				<li> string
+			</ul>
+		]]>
+		</attribute>
+		<example title="Example">
+		<![CDATA[
+			{xml:document resource="com/inamik/template/lib/xml/inamik_template_lib-xml.xml" id=templateLib}
+			{xml:xpath from=$templateLib xpath="template-lib/description" type="string" id=description}
+			Template Lib Description:
+				{trim}{$description}{/}
+
+			{xml:xpath from=$templateLib xpath="template-lib/action" type="nodes" id=actions}
+			Actions:
+				{foreach id=action in=$actions}
+					{xml:xpath from=$action xpath="@name" type="string"}
+						{trim}{xml:xpath from=$action xpath="description" type="string"}{/}
+				{/}
+		]]>
+		</example>
+	</action>
+</template-lib>

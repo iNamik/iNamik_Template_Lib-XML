@@ -1,0 +1,16 @@
+iNamik Template Lib - XML v@build.version@ (@build.date@)
+
+Version History
+============== =
+
+Changes in v0.50.1
+
+	*	Initial GitHub commit
+
+	*	Fleshed out lib-xml documentation & examples
+
+	*	Fleshed out README.md
+
+Changes in v0.50.0
+
+	*	All development up to this point :)
