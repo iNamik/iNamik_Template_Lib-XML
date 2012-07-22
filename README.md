@@ -14,6 +14,7 @@ TAGS
   Arguments:
 
     * id [required]
+
       The name of the template variable to assign the result to.
 
     * file [optinal]
@@ -28,11 +29,11 @@ TAGS
 
   Filesystem Example:
 
-      {xml:document file="config.xml" id=config}
+		{xml:document file="config.xml" id=config}
 
   Classpath Example:
 
-      {xml:document resource="com/inamik/template/lib/xml/inamik_template_lib-xml.xml" id=templateLib}
+		{xml:document resource="com/inamik/template/lib/xml/inamik_template_lib-xml.xml" id=templateLib}
 
 * **{xpath}**
 
@@ -86,6 +87,13 @@ This project has the following dependencies:
 * iNamik Template Engine v0.63.0 or later
 
 * Jaxen Universal Java XPath Engine v1.1.1 or later
+
+
+DOWNLOAD
+--------
+
+* View the source code on [GitHub](https://github.com/iNamik/iNamik_Template_Lib-XML)
+* Download [Source/Binary Distributions](https://github.com/iNamik/iNamik_Template_Lib-XML/downloads)
 
 
 INSTALLATION
